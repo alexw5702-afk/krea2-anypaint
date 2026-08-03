@@ -1,0 +1,1325 @@
+[
+  {
+    "id": "01_photo_internal",
+    "label": "Photographic internal edit",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810301,
+    "edit_seed": 820301,
+    "source_prompt": "an original sunlit modern kitchen interior, pale stone island, oak cabinets, soft morning light, editorial architectural photography, no text, no logos",
+    "prompt": "a sunlit modern kitchen interior with a handmade ceramic bowl of fresh lemons on the center island, coherent morning light, complete architectural photograph",
+    "mask": "01_photo_internal_mask.png",
+    "source": "01_photo_internal_source.webp",
+    "result": "01_photo_internal_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.58,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.764,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.069,
+      "total_seconds": 3.651,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 4.702,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.028,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.073249,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.1,
+      "total_seconds": 4.804,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "02_watercolor_outpaint",
+    "label": "Watercolor downward outpainting",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1536
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810302,
+    "edit_seed": 820302,
+    "source_prompt": "an original watercolor greenhouse beside a quiet coastal garden, airy washes, delicate ink details, soft daylight, no text",
+    "prompt": "an original watercolor greenhouse and coastal garden, the path and flowering plants continuing naturally downward, airy washes, complete vertical composition",
+    "mask": "02_watercolor_outpaint_mask.png",
+    "source": "02_watercolor_outpaint_source.webp",
+    "result": "02_watercolor_outpaint_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.546,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.762,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.06,
+      "total_seconds": 3.608,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 7.254,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.395,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1536
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          256,
+          384
+        ],
+        "generated_fraction": 0.333333,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.093,
+      "total_seconds": 7.349,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "03_3d_outpaint",
+    "label": "Stylized 3D horizontal outpainting",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1536,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810303,
+    "edit_seed": 820303,
+    "source_prompt": "an original small retro-futuristic exploration rover in a colorful alien desert, stylized 3D render, detailed materials, cinematic daylight, no text, no logos",
+    "prompt": "an original retro-futuristic exploration rover crossing a colorful alien desert, distant mineral formations extending to the right, stylized 3D cinematic render",
+    "mask": "03_3d_outpaint_mask.png",
+    "source": "03_3d_outpaint_source.webp",
+    "result": "03_3d_outpaint_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.56,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.762,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.059,
+      "total_seconds": 3.62,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 7.286,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.397,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1536,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          256
+        ],
+        "generated_fraction": 0.333333,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.095,
+      "total_seconds": 7.383,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "04_portrait_mixed",
+    "label": "Original-character mixed edit",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1536,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810304,
+    "edit_seed": 820304,
+    "source_prompt": "an original adult woman with short silver hair wearing a simple teal coat in a bright contemporary gallery, full body fashion photograph, fictional subject, no text",
+    "prompt": "an original adult woman with short silver hair wearing a richly textured coral coat in a spacious contemporary gallery, complete full-body fashion photograph",
+    "mask": "04_portrait_mixed_mask.png",
+    "source": "04_portrait_mixed_source.webp",
+    "result": "04_portrait_mixed_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.553,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.761,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.059,
+      "total_seconds": 3.614,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 7.279,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.396,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1536,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          256
+        ],
+        "generated_fraction": 0.455404,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.094,
+      "total_seconds": 7.375,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "05_botanical_disconnected",
+    "label": "Disconnected honeybee insertion",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810305,
+    "edit_seed": 820305,
+    "source_prompt": "an original botanical field illustration of unusual blue and white meadow flowers, fine paper texture, naturalistic painted details, no labels, no text",
+    "prompt": "an original botanical field illustration of blue and white meadow flowers with three small honeybees hovering naturally between the blossoms, delicate wings, fine paper texture, naturalistic painted details",
+    "mask": "05_botanical_disconnected_mask.png",
+    "source": "05_botanical_disconnected_source.webp",
+    "result": "05_botanical_disconnected_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.55,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.76,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.062,
+      "total_seconds": 3.614,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 4.644,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.038,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.071671,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.102,
+      "total_seconds": 4.747,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "07_product_narrow",
+    "label": "Narrow cable recolor",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 810307,
+    "edit_seed": 820307,
+    "source_prompt": "an original sculptural desk lamp made from brushed aluminum on a neutral studio set, premium product photography, soft shadows, no text, no logo",
+    "prompt": "an original sculptural brushed aluminum desk lamp with a vivid orange braided power cable extending from the lamp across the tabletop, premium neutral product photography",
+    "mask": "07_product_narrow_mask.png",
+    "source": "07_product_narrow_source.webp",
+    "result": "07_product_narrow_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 3.566,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 21.761,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.06,
+      "total_seconds": 3.627,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 4.725,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.036,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.017448,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.096,
+      "total_seconds": 4.823,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "08_landscape_complex",
+    "label": "Complex semantic landscape edit",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "canvas_size": [
+      1536,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "source_seed": 810308,
+    "edit_seed": 820308,
+    "source_prompt": "an original alpine valley after rain, winding river, dark rocks and low clouds, wide cinematic landscape photograph, no buildings, no text",
+    "prompt": "an original alpine valley after rain with clusters of luminous rainbow-colored fantasy mushrooms growing along the winding riverbanks and foreground rocks, subtle magical glow reflected in wet stone, coherent wide cinematic landscape photograph",
+    "mask": "08_landscape_complex_mask.png",
+    "source": "08_landscape_complex_source.webp",
+    "result": "08_landscape_complex_result.webp",
+    "source_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 5.631,
+      "mode": "generate",
+      "mode_switch_seconds": 0.002,
+      "peak_cuda_gib": 22.106,
+      "reference_count": 0,
+      "reference_kv_cache": false,
+      "reference_preprocess": {
+        "original_sizes": [],
+        "output_sizes": [],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.059,
+      "total_seconds": 5.691,
+      "vlm_reference_count": 0
+    },
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "generation_seconds": 7.381,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 22.406,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1536,
+          1024
+        ],
+        "canvas_size": [
+          1536,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          256
+        ],
+        "generated_fraction": 0.252213,
+        "mask_convention": "0=known,255=generated",
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1536,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1536,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.102,
+      "total_seconds": 7.484,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "09_male_accessories",
+    "label": "Male portrait accessories",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830301,
+    "edit_seed": 840301,
+    "source_prompt": "an original adult man with short dark hair, centered waist-up portrait against a quiet neutral studio background, plain navy shirt, soft daylight, realistic editorial photography, no glasses, no jewelry, no text",
+    "prompt": "a realistic editorial portrait of an adult man with short dark hair wearing thin rectangular silver eyeglasses and a small silver ear cuff, plain navy shirt, coherent soft daylight and neutral studio background",
+    "mask": "09_male_accessories_mask.png",
+    "source": "09_male_accessories_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "09_male_accessories_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215704_seed840301",
+      "generation_seconds": 4.558,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.595,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.067753,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.095,
+      "total_seconds": 4.654,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "10_female_accessories",
+    "label": "Female disconnected accessories",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830302,
+    "edit_seed": 840302,
+    "source_prompt": "an original adult woman with shoulder-length auburn hair, centered waist-up portrait against a pale gray studio background, simple cream blouse, natural daylight, no jewelry, no hair accessories, no text",
+    "prompt": "a polished portrait of an adult woman with shoulder-length auburn hair, a dark green enamel hair clip above her left ear and matching small geometric earrings, simple cream blouse, coherent natural daylight and pale gray studio background",
+    "mask": "10_female_accessories_mask.png",
+    "source": "10_female_accessories_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "10_female_accessories_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215710_seed840302",
+      "generation_seconds": 4.624,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.003,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.606,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.034861,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.099,
+      "total_seconds": 4.725,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "11_product_restyle",
+    "label": "Shoes and bag local redesign",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830303,
+    "edit_seed": 840303,
+    "source_prompt": "an overhead product photograph on a warm light-gray background, a pair of plain white low-top sneakers arranged on the left and a simple tan leather shoulder bag on the right, balanced catalog composition, soft shadows, no text, no logos",
+    "prompt": "an overhead catalog photograph with a pair of deep forest-green suede sneakers on the left and a cobalt-blue structured leather shoulder bag on the right, refined minimal hardware, balanced composition, coherent soft studio shadows",
+    "mask": "11_product_restyle_mask.png",
+    "source": "11_product_restyle_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "11_product_restyle_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215715_seed840303",
+      "generation_seconds": 4.609,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.605,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.465552,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.093,
+      "total_seconds": 4.703,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "12_desk_objects",
+    "label": "Two desktop object insertions",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830304,
+    "edit_seed": 840304,
+    "source_prompt": "a clean oak writing desk viewed straight on in a softly lit home office, empty desktop, plain wall, restrained contemporary interior photography, no people, no text",
+    "prompt": "a clean oak writing desk in a softly lit home office with a handmade dark green ceramic mug on the left side and a small potted succulent in a matte white planter on the right, coherent restrained contemporary interior photograph",
+    "mask": "12_desk_objects_mask.png",
+    "source": "12_desk_objects_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "12_desk_objects_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215721_seed840304",
+      "generation_seconds": 4.622,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.606,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.084268,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.097,
+      "total_seconds": 4.721,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "13_living_room_objects",
+    "label": "Living-room multi-region insertion",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830305,
+    "edit_seed": 840305,
+    "source_prompt": "a bright neutral living room photographed straight on, low cream sofa, empty floor on both sides, simple coffee table, warm daylight, understated architectural photography, no people, no text",
+    "prompt": "a bright neutral living room with a tall brushed-brass floor lamp beside the left end of the cream sofa and a round woven storage basket beside the right end, simple coffee table, coherent warm daylight and understated architectural photography",
+    "mask": "13_living_room_objects_mask.png",
+    "source": "13_living_room_objects_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "13_living_room_objects_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215726_seed840305",
+      "generation_seconds": 4.583,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.607,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.180557,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.102,
+      "total_seconds": 4.687,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "14_window_view",
+    "label": "Complete window-view replacement",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1024
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830306,
+    "edit_seed": 840306,
+    "source_prompt": "a quiet contemporary reading room with a large rectangular picture window centered on the wall, ordinary overcast city view outside, armchair in the foreground, realistic interior photography, no people, no text",
+    "prompt": "a quiet contemporary reading room whose large central picture window overlooks a snowy mountain lake beneath a clear pale-blue winter sky, armchair in the foreground, coherent daylight, reflections and realistic interior photography",
+    "mask": "14_window_view_mask.png",
+    "source": "14_window_view_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "14_window_view_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215732_seed840306",
+      "generation_seconds": 4.667,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.605,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1024
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          384,
+          384
+        ],
+        "generated_fraction": 0.268453,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.098,
+      "total_seconds": 4.767,
+      "vlm_reference_count": 1
+    }
+  },
+  {
+    "id": "15_person_boundary",
+    "label": "Boundary completion of an adult man",
+    "source_size": [
+      1024,
+      1024
+    ],
+    "canvas_size": [
+      1024,
+      1536
+    ],
+    "bbox": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "source_seed": 830307,
+    "edit_seed": 840307,
+    "source_prompt": "an original adult man wearing a charcoal field jacket and gray shirt, centered standing portrait cropped naturally at mid-thigh by the lower image edge, quiet railway platform, soft cloudy daylight, realistic photography, no text",
+    "prompt": "a complete full-body photograph of an adult man wearing a charcoal field jacket, gray shirt, straight dark trousers and practical brown boots, standing naturally on a quiet railway platform in coherent soft cloudy daylight",
+    "mask": "15_person_boundary_mask.png",
+    "source": "15_person_boundary_source.webp",
+    "source_timings": {},
+    "selection": "first_fixed_seed_output_no_reroll",
+    "result": "15_person_boundary_result.webp",
+    "edit_timings": {
+      "artist_lora_switch_seconds": 0.0,
+      "artist_loras": [],
+      "conditioning_cache_hit": false,
+      "debug_dir": "experiments/krea2/debug/in_out_runtime/20260803_215738_seed840307",
+      "generation_seconds": 7.15,
+      "mode": "in_out",
+      "mode_switch_seconds": 0.002,
+      "output_contract": "raw_model_output",
+      "pass_count": 1,
+      "peak_cuda_gib": 21.972,
+      "plan": "single_pass_mixed_mask",
+      "preprocess": {
+        "bbox_normalized": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "bbox_pixels": [
+          0,
+          0,
+          1024,
+          1024
+        ],
+        "canvas_size": [
+          1024,
+          1536
+        ],
+        "condition_fill": "median-known-rgb",
+        "condition_size": [
+          256,
+          384
+        ],
+        "generated_fraction": 0.333333,
+        "mask_convention": "0=known,255=generated",
+        "reference_erase_px": 16,
+        "seam_px": 32
+      },
+      "reference_count": 1,
+      "reference_kv_cache": true,
+      "reference_preprocess": {
+        "original_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "output_sizes": [
+          [
+            1024,
+            1024
+          ]
+        ],
+        "profile": null
+      },
+      "text_conditioning_seconds": 0.095,
+      "total_seconds": 7.247,
+      "vlm_reference_count": 1
+    }
+  }
+]
