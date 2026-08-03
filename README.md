@@ -5,6 +5,9 @@ Native ComfyUI nodes for the
 functional adapter. AnyPaint adds arbitrary-mask **inpainting**, **outpainting**,
 and mixed **image editing** to Krea 2 Turbo.
 
+[Model and portable Diffusers example](https://huggingface.co/yijunwang2/krea2-anypaint)
+| [Interactive ZeroGPU Space](https://huggingface.co/spaces/yijunwang2/krea2-anypaint)
+
 ![AnyPaint examples](showcase.webp)
 
 ## Install
