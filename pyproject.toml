@@ -1,0 +1,16 @@
+[project]
+name = "comfyui-krea2-anypaint"
+version = "0.1.0"
+description = "ComfyUI nodes for Krea 2 AnyPaint arbitrary-mask inpainting and outpainting"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = ["einops", "numpy", "Pillow", "torch"]
+
+[project.urls]
+Repository = "https://github.com/alexw5702-afk/krea2-anypaint"
+Model = "https://huggingface.co/yijunwang2/krea2-anypaint"
+
+[tool.comfy]
+PublisherId = "alexw5702-afk"
+DisplayName = "Krea 2 AnyPaint"
+Icon = ""

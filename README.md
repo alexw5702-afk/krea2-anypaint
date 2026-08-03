@@ -1,65 +1,88 @@
-# Krea 2 AnyPaint
+# ComfyUI Krea 2 AnyPaint
 
-Arbitrary-mask inpainting, outpainting, and image editing for Krea 2 Turbo.
+Native ComfyUI nodes for the
+[`yijunwang2/krea2-anypaint`](https://huggingface.co/yijunwang2/krea2-anypaint)
+functional adapter. AnyPaint adds arbitrary-mask **inpainting**, **outpainting**,
+and mixed **image editing** to Krea 2 Turbo.
 
-This repository contains the portable Diffusers runtime for
-[`yijunwang2/krea2-anypaint`](https://huggingface.co/yijunwang2/krea2-anypaint).
-The model repository provides the rank-32 LoRA weights, license, fixed-seed
-showcase, and complete model card. A ZeroGPU demo is available at
-[`yijunwang2/krea2-anypaint`](https://huggingface.co/spaces/yijunwang2/krea2-anypaint).
-
-## Features
-
-- arbitrary-shape inpainting masks;
-- one-pass outpainting into a larger canvas;
-- mixed internal and external image editing;
-- disconnected and narrow generated regions;
-- timestep-matched preservation of known latent tokens;
-- isolated reference K/V caching for distilled Krea 2 Turbo inference.
-
-White mask pixels are generated or edited. Black pixels are preserved. Pixels
-outside the optional source bounding box are automatically generated.
+![AnyPaint examples](showcase.webp)
 
 ## Install
 
 ```bash
+cd ComfyUI/custom_nodes
 git clone https://github.com/alexw5702-afk/krea2-anypaint
-cd krea2-anypaint
-pip install -r requirements.txt
 ```
 
-## Run
+Restart ComfyUI, then place
+`krea2_anypaint_rank32.safetensors` in `ComfyUI/models/loras`.
 
-```bash
-python example.py \
-  --source input.webp \
-  --mask mask.png \
-  --output result.webp \
-  --width 1536 \
-  --height 1024 \
-  --bbox 0 0 1024 1024 \
-  --prompt "a complete coherent scene"
+## Requirements
+
+- A current ComfyUI build with native Krea 2 support.
+- Krea 2 Turbo diffusion model, Krea 2 Qwen3-VL CLIP, and Qwen Image VAE.
+- [Krea 2 AnyPaint LoRA](https://huggingface.co/yijunwang2/krea2-anypaint/blob/main/krea2_anypaint_rank32.safetensors).
+
+No custom sampler and no final source composite are required.
+
+## Nodes
+
+### Krea2 AnyPaint Prepare
+
+Takes a source image, optional arbitrary mask, and four padding values. White
+mask pixels and all padded canvas pixels are generated; black pixels are
+preserved. The node outputs:
+
+- a 384px semantic reference for Krea 2 reference attention and Qwen3-VL;
+- the full-resolution known canvas;
+- generated and preserved masks;
+- aligned canvas dimensions.
+
+Use the `MASK` output from ComfyUI's `Load Image` Mask Editor directly. For
+inpainting, keep all padding at zero. For outpainting, add space on any side.
+Both can be combined in one request.
+
+### Krea2 AnyPaint Encode
+
+Encodes the prompt/reference and returns a standard ComfyUI `LATENT` containing
+the known image plus a token-aligned `noise_mask`. ComfyUI's sampler applies the
+same timestep-matched preservation used by the Diffusers reference pipeline:
+
+```text
+known_at_sigma = sigma * initial_noise + (1 - sigma) * known_latent
 ```
 
-The example downloads the adapter from Hugging Face. Access to the Krea 2 base
-model is governed by the Krea 2 Community License.
+### Krea2 AnyPaint Model Patch
 
-## ComfyUI
+Registers the semantic reference over the complete target grid and precomputes
+its isolated reference K/V cache. Connect this node after `Load LoRA` and before
+`KSampler`.
 
-ComfyUI support is planned. The existing registered-outpaint nodes can supply
-the reference-attention and placement core, but AnyPaint additionally requires
-arbitrary mask input and timestep-matched known-region replacement in the
-sampling loop. Loading the AnyPaint LoRA into the old rectangular workflow is
-not sufficient.
+## Workflow
 
-## Scope
+Drag [`krea2_anypaint_workflow.json`](krea2_anypaint_workflow.json) into
+ComfyUI. The important wiring is:
 
-This runtime repository does not contain training data, training caches,
-optimizer state, or intermediate checkpoints. The bundled showcase in the
-model repository uses only synthetic, original, non-IP source images.
+```text
+Load Image (image + mask) -> AnyPaint Prepare
+AnyPaint Prepare + CLIP + VAE -> AnyPaint Encode
+Load Diffusion Model -> Load LoRA -> AnyPaint Model Patch -> KSampler
+AnyPaint Encode.latent -> KSampler.latent_image
+KSampler -> VAE Decode -> Save Image
+```
 
-## License
+Recommended Krea 2 Turbo settings: 8 steps, Euler, simple scheduler, CFG 1.0,
+LoRA strength 1.0, VLM reference enabled, K/V cache enabled.
 
-Runtime code is distributed under Apache License 2.0. The separately downloaded
-LoRA weights are a Krea 2 derivative and remain subject to the Krea 2 Community
-License. See `NOTICE` and the model repository for details.
+The output is the raw model decode. Do not add the old registered-outpaint
+composite node: AnyPaint preserves known pixels during every denoising step.
+
+## Credits
+
+Reference-attention and K/V-cache code is adapted from
+[`RealRebelAI/ComfyUI-Rebels-Krea2-Outpaint`](https://github.com/RealRebelAI/ComfyUI-Rebels-Krea2-Outpaint)
+and [`ostris/ComfyUI-Krea2-Ostris-Edit`](https://github.com/ostris/ComfyUI-Krea2-Ostris-Edit).
+See `NOTICE` for the complete attribution chain.
+
+Node code is MIT licensed. The separately downloaded LoRA is a Krea 2
+derivative and remains subject to the Krea 2 Community License.
