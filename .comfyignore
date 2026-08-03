@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+build_repo.py
+dist/
+showcase/
+showcase.webp
