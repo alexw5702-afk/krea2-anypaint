@@ -152,8 +152,13 @@ class Krea2AnyPaintEncode:
         )
 
         known_latent = vae.encode(known_image[..., :3])
-        if known_latent.ndim != 4:
-            raise ValueError(f"AnyPaint expects a 4D image latent, got {tuple(known_latent.shape)}")
+        if known_latent.ndim not in (4, 5):
+            raise ValueError(f"AnyPaint expects a 4D or 5D image latent, got {tuple(known_latent.shape)}")
+        if known_latent.ndim == 5 and known_latent.shape[2] != 1:
+            raise ValueError(
+                "AnyPaint handles still images only; the latent time dimension must be 1, "
+                f"got {tuple(known_latent.shape)}"
+            )
         noise_mask = ah.token_aligned_noise_mask(
             keep_mask,
             known_latent.shape[-2],

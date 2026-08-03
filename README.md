@@ -20,7 +20,12 @@ Restart ComfyUI, then place
 ## Requirements
 
 - A current ComfyUI build with native Krea 2 support.
-- Krea 2 Turbo diffusion model, Krea 2 Qwen3-VL CLIP, and Qwen Image VAE.
+- [`krea2_turbo_int8_convrot.safetensors`](https://huggingface.co/Comfy-Org/Krea-2/blob/main/diffusion_models/krea2_turbo_int8_convrot.safetensors)
+  in `ComfyUI/models/diffusion_models`.
+- [`qwen3vl_4b_fp8_scaled.safetensors`](https://huggingface.co/Comfy-Org/Krea-2/blob/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors)
+  in `ComfyUI/models/text_encoders`.
+- [`qwen_image_vae.safetensors`](https://huggingface.co/Comfy-Org/Krea-2/blob/main/vae/qwen_image_vae.safetensors)
+  in `ComfyUI/models/vae`.
 - [Krea 2 AnyPaint LoRA](https://huggingface.co/yijunwang2/krea2-anypaint/blob/main/krea2_anypaint_rank32.safetensors).
 
 No custom sampler and no final source composite are required.
@@ -73,6 +78,12 @@ KSampler -> VAE Decode -> Save Image
 
 Recommended Krea 2 Turbo settings: 8 steps, Euler, simple scheduler, CFG 1.0,
 LoRA strength 1.0, VLM reference enabled, K/V cache enabled.
+
+This graph was validated end to end with the three linked Comfy-Org model
+files. The preprocessing, mask convention, reference placement, sigma schedule,
+and per-step known-region replacement match the Diffusers example and the
+DeepMachine backend. Quantized runtimes may differ at the pixel level from the
+portable BF16 example.
 
 The output is the raw model decode. Do not add the old registered-outpaint
 composite node: AnyPaint preserves known pixels during every denoising step.

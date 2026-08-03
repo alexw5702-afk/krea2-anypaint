@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import math
 
+import numpy as np
+from PIL import Image
 import torch
 import torch.nn.functional as F
 
@@ -23,15 +25,21 @@ def _resize_mask(mask: torch.Tensor, height: int, width: int) -> torch.Tensor:
     return F.interpolate(mask[:, None].float(), (height, width), mode="nearest")[:, 0]
 
 
-def _resize_reference(image: torch.Tensor, max_edge: int) -> torch.Tensor:
-    _, height, width, _ = image.shape
-    scale = min(1.0, max_edge / max(height, width))
-    target_h = max(ALIGNMENT, int(round(height * scale / ALIGNMENT)) * ALIGNMENT)
-    target_w = max(ALIGNMENT, int(round(width * scale / ALIGNMENT)) * ALIGNMENT)
-    if (target_h, target_w) == (height, width):
-        return image
-    chw = image.movedim(-1, 1)
-    return F.interpolate(chw, (target_h, target_w), mode="bilinear", align_corners=False).movedim(1, -1)
+def _tensor_to_pil(image: torch.Tensor) -> Image.Image:
+    values = image.detach().cpu().clamp(0, 1).mul(255).round().to(torch.uint8).numpy()
+    return Image.fromarray(values[..., :3], mode="RGB")
+
+
+def _pil_to_tensor(image: Image.Image, device: torch.device) -> torch.Tensor:
+    values = np.asarray(image.convert("RGB"), dtype=np.uint8).copy()
+    return torch.from_numpy(values).to(device=device, dtype=torch.float32).div_(255.0)
+
+
+def _resize_reference(image: Image.Image, max_edge: int) -> Image.Image:
+    scale = min(1.0, max_edge / max(image.size))
+    width = max(ALIGNMENT, int(round(image.width * scale)) // ALIGNMENT * ALIGNMENT)
+    height = max(ALIGNMENT, int(round(image.height * scale)) // ALIGNMENT * ALIGNMENT)
+    return image.resize((width, height), Image.Resampling.LANCZOS)
 
 
 def _dilate(mask: torch.Tensor, radius: int) -> torch.Tensor:
@@ -78,26 +86,38 @@ def prepare_canvas(
     conditions = []
     generated_masks = []
     for index in range(batch):
-        pixels = source[index]
-        median = pixels.reshape(-1, 3).median(dim=0).values
-        known = median.view(1, 1, 3).expand(canvas_h, canvas_w, 3).clone()
-        known[top : top + source_h, left : left + source_w] = pixels
+        pixels = _tensor_to_pil(source[index])
+        pixel_values = np.asarray(pixels, dtype=np.uint8)
+        median = np.median(pixel_values.reshape(-1, 3), axis=0).round().astype(np.uint8)
+        known_values = np.empty((canvas_h, canvas_w, 3), dtype=np.uint8)
+        known_values[:] = median
+        known_values[top : top + source_h, left : left + source_w] = pixel_values
 
         generated = torch.ones((canvas_h, canvas_w), dtype=torch.float32, device=source.device)
         generated[top : top + source_h, left : left + source_w] = source_mask[index]
         if not bool(generated.any()):
             raise ValueError("the generated mask has no white pixels")
 
-        condition = known.clone()
-        preserved = condition[generated < 0.5]
-        fill = preserved.median(dim=0).values if preserved.numel() else median
-        condition[generated > 0.5] = fill
-        known_images.append(known)
-        conditions.append(condition)
+        generated_values = generated.detach().cpu().numpy() > 0.5
+        condition_values = known_values.copy()
+        preserved = condition_values[~generated_values]
+        fill = (
+            np.median(preserved, axis=0).round().astype(np.uint8)
+            if len(preserved)
+            else median
+        )
+        condition_values[generated_values] = fill
+        known_images.append(_pil_to_tensor(Image.fromarray(known_values), source.device))
+        conditions.append(
+            _pil_to_tensor(
+                _resize_reference(Image.fromarray(condition_values), reference_max_edge),
+                source.device,
+            )
+        )
         generated_masks.append(generated)
 
     known_image = torch.stack(known_images)
-    condition = _resize_reference(torch.stack(conditions), reference_max_edge)
+    condition = torch.stack(conditions)
     generated = torch.stack(generated_masks)
     keep = 1.0 - _dilate(generated, seam_px).clamp(0, 1)
     return condition, known_image, generated, keep, canvas_w, canvas_h
