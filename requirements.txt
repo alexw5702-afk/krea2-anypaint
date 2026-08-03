@@ -1,0 +1,11 @@
+accelerate
+diffusers==0.39.0
+huggingface_hub
+numpy
+opencv-python-headless
+peft
+pillow
+safetensors
+sentencepiece
+torch
+transformers>=4.57
