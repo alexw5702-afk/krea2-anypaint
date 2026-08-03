@@ -7,6 +7,7 @@ and mixed **image editing** to Krea 2 Turbo.
 
 [Model and portable Diffusers example](https://huggingface.co/yijunwang2/krea2-anypaint)
 | [Interactive ZeroGPU Space](https://huggingface.co/spaces/yijunwang2/krea2-anypaint)
+| [Collection](https://huggingface.co/collections/yijunwang2/krea-2-functional-adapters-6a700e9e5c134888d6615a5d)
 
 ![AnyPaint examples](showcase.webp)
 
