@@ -21,7 +21,7 @@ class Krea2AnyPaintPrepare:
                 "source": ("IMAGE",),
                 "left": ("INT", {"default": 0, "min": 0, "max": 8192, "step": 16}),
                 "top": ("INT", {"default": 0, "min": 0, "max": 8192, "step": 16}),
-                "right": ("INT", {"default": 512, "min": 0, "max": 8192, "step": 16}),
+                "right": ("INT", {"default": 0, "min": 0, "max": 8192, "step": 16}),
                 "bottom": ("INT", {"default": 0, "min": 0, "max": 8192, "step": 16}),
                 "reference_max_edge": ("INT", {"default": 384, "min": 128, "max": 768, "step": 16}),
                 "boundary_redraw_px": ("INT", {"default": 32, "min": 0, "max": 256, "step": 1}),
@@ -43,9 +43,10 @@ class Krea2AnyPaintPrepare:
     FUNCTION = "prepare"
     CATEGORY = "Krea2/AnyPaint"
     DESCRIPTION = (
-        "Place the source without resizing it. Padding and white mask pixels are "
-        "generated; black mask pixels are preserved. The source image's Mask "
-        "Editor output can be connected directly to generated_mask."
+        "Connect source IMAGE and a MASK from SAM, Mask Editor or another mask node. "
+        "White/values above 0.5 generate; black/other values preserve. "
+        "For a separate black/white image use ImageToMask (red). "
+        "Padding defaults to zero; add padding only for outpainting."
     )
 
     def prepare(

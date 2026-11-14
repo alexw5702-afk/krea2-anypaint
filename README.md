@@ -202,14 +202,71 @@ KSampler -> VAE Decode -> Save Image
 Recommended Krea 2 Turbo settings: 8 steps, Euler, simple scheduler, CFG 1.0,
 LoRA strength 1.0, VLM reference enabled, K/V cache enabled.
 
-This graph was validated end to end with the three linked Comfy-Org model
-files. The preprocessing, mask convention, reference placement, sigma schedule,
-and per-step known-region replacement match the Diffusers example and the
-DeepMachine backend. Quantized runtimes may differ at the pixel level from the
-portable BF16 example.
-
 The output is the raw model decode. Do not add the old registered-outpaint
 composite node: AnyPaint preserves known pixels during every denoising step.
+
+## Usage
+
+### Inpaint without changing image size
+
+1. Import `krea2_anypaint_workflow.json` and select your installed model, text
+   encoder, VAE and AnyPaint LoRA in their loader nodes.
+2. Load your source image and connect a `MASK` from **SAM or another mask node**
+   to Prepare's `generated_mask`. The source `IMAGE` connects to Prepare's `source`.
+   You can also use the already-wired Load Image `MASK` output with Mask Editor.
+3. Leave Prepare's `left`, `top`, `right` and `bottom` at **0**. This is the default;
+   it does not request outpainting. Dimensions are aligned upward to multiples
+   of 16, so non-aligned inputs can still gain a few right/bottom pixels.
+4. Enter the **complete desired image description** in **Krea2 AnyPaint Encode →
+   prompt**, not Prepare or the empty negative-prompt node. For example, to remove
+   a mug from a table, describe the table and the background you want to remain.
+   This guides generation; exact object removal is not guaranteed.
+5. Queue the workflow. KSampler → VAE Decode → Save Image produces the result.
+
+### Outpaint
+
+Set only the side(s) you want to extend in Prepare: `left`, `top`, `right`,
+`bottom`, in pixels. For example, `right=256` adds 256 pixels on the right;
+leave the other sides at 0. Padding creates the generated area automatically,
+so no hand-drawn mask is needed for a pure outpaint. You can also draw an internal
+mask to combine inpainting and outpainting. The source image is not stretched.
+
+### Connect a mask from SAM or other nodes
+
+Connect the source `IMAGE` to Prepare's `source`, and a `MASK` from SAM or any
+other mask-producing node to Prepare's `generated_mask`. There is no required
+mask tool. **White / 1 means regenerate; black / 0 means preserve.** For object
+removal, the selected object should be white. Preview the mask to check the
+selection and invert it if the generating node uses the opposite convention.
+
+```text
+Load Image.IMAGE ──────────────────────> AnyPaint Prepare.source
+       └──> SAM / segmentation node ──> AnyPaint Prepare.generated_mask
+```
+
+A segmentation prompt selects **what to mask**; the AnyPaint generation prompt
+in Encode (Krea2) or Generate (MOSS) describes **the image you want afterward**.
+If a mask misses an object's outline, hair or shadow, optionally use a standard
+Grow Mask node before Prepare. Choose the expansion yourself; this workflow
+does not add an automatic growth setting or a required segmentation dependency.
+
+Other optional mask sources:
+
+- **Mask Editor:** use the source Load Image's `MASK` output after saving the edit.
+  The bundled single-Load-Image workflow is wired this way; replace that MASK
+  connection with your SAM output if preferred.
+- **Separate black/white image:** Load Image `IMAGE` → ImageToMask (`red`) →
+  Prepare `generated_mask`. Its ordinary Load Image `MASK` output reads inverse
+  transparency, not black/white colors.
+
+Masks are binary: values above 0.5 generate, all other values preserve. Gray or
+partially transparent masks do not provide proportional edit strength.
+
+### Update existing workflows
+
+New nodes and the bundled workflow default all four padding values to 0.
+Previously saved workflows keep their saved values: set `right=0` yourself for
+inpainting, or import the updated workflow. No new model weight is required.
 
 ## Credits
 

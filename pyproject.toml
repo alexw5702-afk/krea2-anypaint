@@ -1,6 +1,6 @@
 [project]
 name = "krea2-anypaint"
-version = "0.1.0"
+version = "0.1.1"
 description = "ComfyUI nodes for Krea 2 AnyPaint arbitrary-mask inpainting and outpainting"
 license = { text = "MIT" }
 requires-python = ">=3.10"
